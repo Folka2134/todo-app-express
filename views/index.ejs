@@ -13,18 +13,12 @@
     </nav>
     <main>
       <ul class="todo-list">
+        <% for(let i=0; i < info.length; i++) {%>
         <li class="todo">
-          <span>first todo</span>
+          <span><%= info[i].todo %></span>
           <span class="delete">[X]</span>
         </li>
-        <li class="todo">
-          <span>second todo</span>
-          <span class="delete">[X]</span>
-        </li>
-        <li class="todo">
-          <span>third todo</span>
-          <span class="delete">[X]</span>
-        </li>
+        <% } %>
       </ul>
       <h3>Add a todo:</h3>
       <div class="input-container">
