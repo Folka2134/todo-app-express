@@ -1,6 +1,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
 
+// local modules
+const { modal } = require("./models/model");
+
 // Express setup
 const app = express();
 const PORT = 5000;
