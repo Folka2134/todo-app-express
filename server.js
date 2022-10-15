@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 
 // local modules
-const { modal } = require("./models/model");
+const Model = require("./models/model");
 
 // Express setup
 const app = express();
@@ -27,8 +27,13 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.render("index.ejs");
+app.get("/", async (req, res) => {
+  try {
+    const data = await Model.find();
+    res.render("index.ejs", { info: data });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 app.listen(PORT, () => {
