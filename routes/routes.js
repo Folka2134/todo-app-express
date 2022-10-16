@@ -18,4 +18,14 @@ routes.post("/newTodo", async (req, res) => {
   }
 });
 
+// DELETE
+routes.delete("/deleteTodo", async (req, res) => {
+  try {
+    await Model.deleteOne({ todo: req.body.todo });
+    res.json("Todo deleted successfully");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 module.exports = routes;
