@@ -5,9 +5,7 @@ const routes = express.Router();
 //// EndPoints
 
 // POST
-
 routes.post("/newTodo", async (req, res) => {
-  // console.log(req.body.todo);
   const todo = new Model({
     todo: req.body.todo,
     completed: false,
