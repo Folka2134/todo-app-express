@@ -21,10 +21,10 @@
         <% } %>
       </ul>
       <h3>Add a todo:</h3>
-      <div class="input-container">
-        <input type="text" />
+      <form action="/api/newTodo" method="POST" class="input-container">
+        <input type="text" name="todo" />
         <input type="submit" value="Submit" />
-      </div>
+      </form>
     </main>
   </body>
 </html>

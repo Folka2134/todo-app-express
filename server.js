@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 
 // local modules
 const Model = require("./models/model");
+const routes = require("./routes/routes");
 
 // Express setup
 const app = express();
@@ -26,6 +27,7 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use("/api", routes);
 
 app.get("/", async (req, res) => {
   try {
