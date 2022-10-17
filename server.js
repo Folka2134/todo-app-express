@@ -33,6 +33,7 @@ app.get("/", async (req, res) => {
   try {
     const data = await Model.find();
     res.render("index.ejs", { info: data });
+    console.log(data);
   } catch (error) {
     console.log(error);
   }
