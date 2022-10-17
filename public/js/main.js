@@ -8,9 +8,11 @@ deleteButton.forEach((element) => {
   element.addEventListener("click", deleteArtist);
 });
 
+// Update completed property
 async function completedTodo(element) {
   const todo = this.parentNode.childNodes[1];
   if (todo.classList.contains("completed")) {
+    //Remove completed
     todo.classList.remove("completed");
 
     try {
@@ -26,6 +28,7 @@ async function completedTodo(element) {
       console.log(error);
     }
   } else {
+    // Add completed
     todo.classList.add("completed");
 
     try {

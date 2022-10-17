@@ -18,6 +18,20 @@ routes.post("/newTodo", async (req, res) => {
   }
 });
 
+// PUT
+
+routes.put("/completed", async (req, res) => {
+  try {
+    await Model.updateOne({
+      todo: req.body.todo,
+      completed: req.body.completed,
+    });
+    res.json("Todo updated successfully");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 // DELETE
 routes.delete("/deleteTodo", async (req, res) => {
   try {
