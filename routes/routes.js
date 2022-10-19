@@ -2,9 +2,8 @@ const express = require("express");
 const Model = require("../models/model");
 const routes = express.Router();
 
-//// EndPoints
-
-// POST
+//// POST
+// create new todo
 routes.post("/newTodo", async (req, res) => {
   const todo = new Model({
     todo: req.body.todo,
@@ -19,8 +18,7 @@ routes.post("/newTodo", async (req, res) => {
 });
 
 //// PUT
-
-// Mark todo completed
+// mark todo completed
 routes.put("/completed", async (req, res) => {
   try {
     await Model.updateOne(
@@ -39,7 +37,7 @@ routes.put("/completed", async (req, res) => {
   }
 });
 
-// Mark todo uncompleted
+// mark todo uncompleted
 routes.put("/uncompleted", async (req, res) => {
   try {
     await Model.updateOne(
@@ -58,7 +56,8 @@ routes.put("/uncompleted", async (req, res) => {
   }
 });
 
-// DELETE
+//// DELETE
+// delete todo
 routes.delete("/deleteTodo", async (req, res) => {
   try {
     await Model.deleteOne({ todo: req.body.todo });
