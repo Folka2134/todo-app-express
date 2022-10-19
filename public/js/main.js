@@ -37,7 +37,7 @@ async function completedTodo(element) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           todo: todo.innerText,
-          // completed: true,
+          completed: true,
         }),
       });
     } catch (error) {

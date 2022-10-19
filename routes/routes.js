@@ -22,16 +22,10 @@ routes.post("/newTodo", async (req, res) => {
 
 routes.put("/completed", async (req, res) => {
   try {
-    await Model.updateOne(
-      {
-        todo: req.body.todo,
-      },
-      {
-        $set: {
-          completed: true,
-        },
-      }
-    );
+    await Model.updateOne({
+      todo: req.body.todo,
+      completed: req.body.completed,
+    });
     res.json("Todo updated successfully");
   } catch (error) {
     console.log(error);
