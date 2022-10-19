@@ -2,8 +2,9 @@ const deleteButton = document.querySelectorAll(".delete");
 const todoText = document.querySelectorAll(".todo .todo-text");
 const itemCompleted = document.querySelectorAll(".todo span.completed");
 
+// event listeners
 deleteButton.forEach((element) => {
-  element.addEventListener("click", deleteArtist);
+  element.addEventListener("click", deleteTodo);
 });
 todoText.forEach((element) => {
   element.addEventListener("click", completedTodo);
@@ -12,8 +13,7 @@ itemCompleted.forEach((element) => {
   element.addEventListener("click", uncompletedTodo);
 });
 
-// Update completed property
-// Complete todo
+// complete todo
 async function completedTodo(element) {
   const todo = this.parentNode.childNodes[1];
   if (!todo.classList.contains("completed")) {
@@ -35,7 +35,7 @@ async function completedTodo(element) {
   }
 }
 
-// Uncomplete todo
+// uncomplete todo
 async function uncompletedTodo(element) {
   const todo = this.parentNode.childNodes[1];
   if (todo.classList.contains("completed")) {
@@ -57,7 +57,8 @@ async function uncompletedTodo(element) {
   }
 }
 
-async function deleteArtist() {
+// delete todo
+async function deleteTodo() {
   const todo = this.parentNode.childNodes[1].innerText;
   try {
     await fetch("api/deleteTodo", {
