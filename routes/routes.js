@@ -18,15 +18,41 @@ routes.post("/newTodo", async (req, res) => {
   }
 });
 
-// PUT
+//// PUT
 
+// Mark todo completed
 routes.put("/completed", async (req, res) => {
   try {
-    await Model.updateOne({
-      todo: req.body.todo,
-      completed: req.body.completed,
-    });
-    res.json("Todo updated successfully");
+    await Model.updateOne(
+      {
+        todo: req.body.todo,
+      },
+      {
+        $set: {
+          completed: true,
+        },
+      }
+    );
+    res.json("marked completed");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// Mark todo uncompleted
+routes.put("/uncompleted", async (req, res) => {
+  try {
+    await Model.updateOne(
+      {
+        todo: req.body.todo,
+      },
+      {
+        $set: {
+          completed: false,
+        },
+      }
+    );
+    res.json("unmarked completed");
   } catch (error) {
     console.log(error);
   }
