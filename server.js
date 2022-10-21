@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 
 // local modules
-const Model = require("./models/model");
+const homeRoutes = require("./routes/homeRoutes");
 const routes = require("./routes/routes");
 
 // Express setup
@@ -27,16 +27,10 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use("/api", routes);
 
-app.get("/", async (req, res) => {
-  try {
-    const data = await Model.find();
-    res.render("index.ejs", { info: data });
-  } catch (error) {
-    console.log(error);
-  }
-});
+// routes
+app.use("/", homeRoutes);
+app.use("/api", routes);
 
 app.listen(PORT, () => {
   console.log(`server running on PORT:${PORT}`);
