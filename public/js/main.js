@@ -59,13 +59,13 @@ async function uncompletedTodo(element) {
 
 // delete todo
 async function deleteTodo() {
-  const todo = this.parentNode.childNodes[1].innerText;
+  const todo = this.parentNode.dataset.id;
   try {
     await fetch("api/deleteTodo", {
       method: "delete",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        todo: todo,
+        id: todo,
       }),
     });
     location.reload();

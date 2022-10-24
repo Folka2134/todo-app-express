@@ -49,7 +49,7 @@ module.exports = {
   },
   deleteTodo: async (req, res) => {
     try {
-      await Model.deleteOne({ todo: req.body.todo });
+      await Model.deleteOne({ _id: req.body.id });
       res.json("Todo deleted successfully");
     } catch (error) {
       console.log(error);
