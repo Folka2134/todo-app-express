@@ -14,7 +14,7 @@
     <main>
       <ul class="todo-list">
         <% for(let i=0; i < info.length; i++) {%>
-        <li class="todo">
+        <li class="todo" data-id="<%= info[i]._id %>">
           <span class="todo-text <%= info[i].completed ? 'completed' : '' %>"
             ><%= info[i].todo %></span
           >
