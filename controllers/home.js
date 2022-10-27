@@ -1,10 +1,9 @@
-const Model = require("../models/model");
+const Model = require("../models/todoModel");
 
 module.exports = {
-  getTodos: async (req, res) => {
+  homePage: async (req, res) => {
     try {
-      const data = await Model.find();
-      res.render("index.ejs", { info: data });
+      res.render("index.ejs");
     } catch (error) {
       console.log(error);
     }

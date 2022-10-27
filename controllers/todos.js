@@ -1,4 +1,4 @@
-const Model = require("../models/model");
+const Model = require("../models/todoModel");
 
 module.exports = {
   createTodo: async (req, res) => {
@@ -8,7 +8,15 @@ module.exports = {
     });
     try {
       await todo.save();
-      res.redirect("/");
+      res.redirect("/todos");
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  getTodos: async (req, res) => {
+    try {
+      const data = await Model.find();
+      res.render("todos.ejs", { info: data });
     } catch (error) {
       console.log(error);
     }

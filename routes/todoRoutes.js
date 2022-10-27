@@ -2,6 +2,10 @@ const express = require("express");
 const routes = express.Router();
 const todoController = require("../controllers/todos");
 
+// GET
+// get todos from database
+routes.get("/", todoController.getTodos);
+
 //// POST
 // create new todo
 routes.post("/newTodo", todoController.createTodo);

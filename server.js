@@ -3,11 +3,11 @@ const mongoose = require("mongoose");
 
 // local modules
 const homeRoutes = require("./routes/homeRoutes");
-const routes = require("./routes/routes");
+const todoRoutes = require("./routes/todoRoutes");
 
 // Express setup
 const app = express();
-const PORT = 5000;
+const PORT = 5001;
 
 // MONGODB Setup
 require("dotenv").config();
@@ -30,7 +30,7 @@ app.use(express.json());
 
 // routes
 app.use("/", homeRoutes);
-app.use("/api", routes);
+app.use("/todos", todoRoutes);
 
 app.listen(PORT, () => {
   console.log(`server running on PORT:${PORT}`);

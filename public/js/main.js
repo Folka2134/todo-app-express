@@ -21,7 +21,7 @@ async function completedTodo(element) {
     todo.classList.add("completed");
 
     try {
-      await fetch("api/completed", {
+      await fetch("todos/completed", {
         method: "put",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -43,7 +43,7 @@ async function uncompletedTodo(element) {
     todo.classList.remove("completed");
 
     try {
-      await fetch("api/uncompleted", {
+      await fetch("todos/uncompleted", {
         method: "put",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -61,7 +61,7 @@ async function uncompletedTodo(element) {
 async function deleteTodo() {
   const todo = this.parentNode.dataset.id;
   try {
-    await fetch("api/deleteTodo", {
+    await fetch("todos/deleteTodo", {
       method: "delete",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

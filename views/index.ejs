@@ -9,24 +9,11 @@
   </head>
   <body>
     <nav>
-      <h1>Todo List</h1>
+      <h1>Greetings traveller</h1>
     </nav>
     <main>
-      <ul class="todo-list">
-        <% for(let i=0; i < info.length; i++) {%>
-        <li class="todo" data-id="<%= info[i]._id %>">
-          <span class="todo-text <%= info[i].completed ? 'completed' : '' %>"
-            ><%= info[i].todo %></span
-          >
-          <span class="delete">[X]</span>
-        </li>
-        <% } %>
-      </ul>
-      <h3>Add a todo:</h3>
-      <form action="/api/newTodo" method="POST" class="input-container">
-        <input type="text" name="todo" />
-        <input type="submit" value="Submit" />
-      </form>
+      <h3>Proceed to todos</h3>
+      <a href="/todos">todos</a>
     </main>
 
     <script src="./js/main.js"></script>
