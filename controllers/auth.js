@@ -1,14 +1,14 @@
 const Model = require("../models/todoModel");
 
 module.exports = {
-  signup: async (req, res) => {
+  getSignup: async (req, res) => {
     try {
       res.render("signup.ejs");
     } catch (error) {
       console.log(error);
     }
   },
-  signin: async (req, res) => {
+  getSignin: async (req, res) => {
     try {
       res.render("signin.ejs");
     } catch (error) {

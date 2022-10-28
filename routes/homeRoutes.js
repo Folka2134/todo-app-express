@@ -8,7 +8,7 @@ const authController = require("../controllers/auth");
  */
 
 homeRoutes.get("/", homeController.homePage);
-homeRoutes.get("/signup", authController.signup);
-homeRoutes.get("/signin", authController.signin);
+homeRoutes.get("/signup", authController.getSignup);
+homeRoutes.get("/signin", authController.getSignin);
 
 module.exports = homeRoutes;
