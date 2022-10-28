@@ -9,4 +9,8 @@ const homeController = require("../controllers/home");
 // Go to homepage
 homeRoutes.get("/", homeController.homePage);
 
+homeRoutes.get("/signup", homeController.signup);
+
+homeRoutes.get("/signin", homeController.signin);
+
 module.exports = homeRoutes;
