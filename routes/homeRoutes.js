@@ -1,6 +1,7 @@
 const express = require("express");
 const homeRoutes = express.Router();
 const homeController = require("../controllers/home");
+const authController = require("../controllers/auth");
 
 //// GET
 // get todos from database
@@ -9,8 +10,8 @@ const homeController = require("../controllers/home");
 // Go to homepage
 homeRoutes.get("/", homeController.homePage);
 
-homeRoutes.get("/signup", homeController.signup);
+homeRoutes.get("/signup", authController.signup);
 
-homeRoutes.get("/signin", homeController.signin);
+homeRoutes.get("/signin", authController.signin);
 
 module.exports = homeRoutes;
