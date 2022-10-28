@@ -11,4 +11,11 @@ homeRoutes.get("/", homeController.homePage);
 homeRoutes.get("/signup", authController.getSignup);
 homeRoutes.get("/signin", authController.getSignin);
 
+/* 
+// POST
+*/
+
+homeRoutes.post("/signup", authController.postSignup);
+homeRoutes.post("/signin", authController.postSignin);
+
 module.exports = homeRoutes;
