@@ -1,4 +1,4 @@
-const Model = require("../models/todoModel");
+const Model = require("../models/userModel");
 
 module.exports = {
   getSignup: async (req, res) => {
