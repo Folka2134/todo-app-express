@@ -1,26 +1,19 @@
 const express = require("express");
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 
 // local modules
 const homeRoutes = require("./routes/homeRoutes");
 const todoRoutes = require("./routes/todoRoutes");
+const connectDB = require("./config/database");
 
 // Express setup
 const app = express();
 const PORT = 5001;
 
 // MONGODB Setup
-require("dotenv").config();
-const mongoString = process.env.DATABASE_URL;
-mongoose.connect(mongoString);
+require("dotenv").config({ path: "./config/.env" });
 
-const database = mongoose.connection;
-database.on("error", (error) => {
-  console.log(error);
-});
-database.once("connected", () => {
-  console.log("Database Connected");
-});
+connectDB();
 
 // Middleware
 app.set("view engine", "ejs");
