@@ -1,7 +1,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
-// const session = require("express-session");
-// const MongoStore = require("connect-mongo");
+const passport = require("passport");
+const session = require("express-session");
+const flash = require("express-flash");
+const MongoStore = require("connect-mongo")(session);
 
 // local modules
 const homeRoutes = require("./routes/homeRoutes");
@@ -22,15 +24,21 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(flash());
 //session
-// app.use(
-//   session({
-//     secret: "keyboard cat",
-//     resave: false,
-//     saveUninitialized: false,
-//     store: new MongoStore({ mongooseConnection: mongoose.connection }),
-//   })
-// );
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+  })
+);
+
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+require("./config/passport")(passport);
 
 // routes
 app.use("/", homeRoutes);
