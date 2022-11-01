@@ -13,6 +13,9 @@
     </nav>
     <main>
       <h3>Sign UP</h3>
+      <% if (locals.messages.errors) { %> <% messages.errors.forEach( el => { %>
+      <div class="alert alert-danger"><%= el.msg %></div>
+      <% }) %> <% } %>
       <form action="/signup" method="POST" class="input-container">
         <input type="text" name="username" placeholder="User Name" />
         <input type="text" name="email" placeholder="Email" />

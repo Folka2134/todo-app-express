@@ -13,6 +13,12 @@
     </nav>
     <main>
       <h3>Sign-in</h3>
+      <% if (locals.messages.errors) { %> <% messages.errors.forEach( el => { %>
+      <div class="alert alert-danger"><%= el.msg %></div>
+      <% }) %> <% } %> <% if (locals.messages.info) { %> <%
+      messages.info.forEach( el => { %>
+      <div class="alert alert-danger"><%= el.msg %></div>
+      <% }) %> <% } %>
       <form action="/signin" method="POST" class="input-container">
         <input type="text" name="username" placeholder="username" />
         <input type="text" name="password" placeholder="password" />
