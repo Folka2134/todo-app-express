@@ -1,10 +1,11 @@
 const express = require("express");
 const routes = express.Router();
 const todoController = require("../controllers/todos");
+const { ensureAuth } = require("../middleware/authMiddle");
 
 // GET
 // get todos from database
-routes.get("/", todoController.getTodos);
+routes.get("/", ensureAuth, todoController.getTodos);
 
 //// POST
 // create new todo
