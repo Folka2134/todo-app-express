@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const dataSchema = new mongoose.Schema({
+const TodoSchema = new mongoose.Schema({
   todo: {
     require: true,
     type: String,
@@ -9,6 +9,10 @@ const dataSchema = new mongoose.Schema({
     require: true,
     type: Boolean,
   },
+  userId: {
+    type: String,
+    required: true,
+  },
 });
 
-module.exports = mongoose.model("Data", dataSchema);
+module.exports = mongoose.model("Todo", TodoSchema);
