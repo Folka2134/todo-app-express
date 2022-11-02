@@ -15,57 +15,63 @@ itemCompleted.forEach((element) => {
 
 // complete todo
 async function completedTodo(element) {
-  const todo = this.parentNode.childNodes[1];
-  if (!todo.classList.contains("completed")) {
+  const Todo = this.parentNode.childNodes[1];
+  const todoId = this.parentNode.dataset.id;
+  if (!Todo.classList.contains("completed")) {
     //Add completed
-    todo.classList.add("completed");
+    Todo.classList.add("completed");
 
     try {
-      await fetch("todos/completed", {
+      const response = await fetch("todos/completed", {
         method: "put",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-type": "application/json" },
         body: JSON.stringify({
-          todo: todo.innerText,
+          todoId: todoId,
         }),
       });
+      const data = await response.json();
+      console.log(data);
       location.reload();
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.log(err);
     }
   }
 }
 
 // uncomplete todo
 async function uncompletedTodo(element) {
-  const todo = this.parentNode.childNodes[1];
-  if (todo.classList.contains("completed")) {
+  const Todo = this.parentNode.childNodes[1];
+  const todoId = this.parentNode.dataset.id;
+  if (Todo.classList.contains("completed")) {
     //Remove completed
-    todo.classList.remove("completed");
+    Todo.classList.remove("completed");
 
     try {
-      await fetch("todos/uncompleted", {
+      const response = await fetch("todos/uncompleted", {
         method: "put",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-type": "application/json" },
         body: JSON.stringify({
-          todo: todo.innerText,
+          todoId: todoId,
         }),
       });
+      const data = await response.json();
+      console.log(data);
       location.reload();
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.log(err);
     }
   }
 }
 
 // delete todo
 async function deleteTodo() {
-  const todo = this.parentNode.dataset.id;
+  const Todo = this.parentNode.dataset.id;
   try {
     await fetch("todos/deleteTodo", {
       method: "delete",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        id: todo,
+        todoId: Todo,
       }),
     });
     location.reload();

@@ -13,10 +13,10 @@
     </nav>
     <main>
       <ul class="todo-list">
-        <% for(let i=0; i < info.length; i++) {%>
-        <li class="todo" data-id="<%= info[i]._id %>">
-          <span class="todo-text <%= info[i].completed ? 'completed' : '' %>"
-            ><%= info[i].todo %></span
+        <% for(let i=0; i < todos.length; i++) {%>
+        <li class="todo" data-id="<%= todos[i]._id %>">
+          <span class="todo-text <%= todos[i].completed ? 'completed' : '' %>"
+            ><%= todos[i].todo %></span
           >
           <span class="delete">[X]</span>
         </li>

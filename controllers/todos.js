@@ -1,66 +1,69 @@
-const Model = require("../models/todoModel");
+const Todo = require("../models/todoModel");
 
 module.exports = {
-  createTodo: async (req, res) => {
-    const todo = new Model({
-      todo: req.body.todo,
-      completed: false,
-    });
-    try {
-      await todo.save();
-      res.redirect("/todos");
-    } catch (error) {
-      console.log(error);
-    }
-  },
   getTodos: async (req, res) => {
     try {
-      const data = await Model.find();
-      res.render("todos.ejs", { info: data });
-    } catch (error) {
-      console.log(error);
+      const todoItems = await Todo.find({ userId: req.user.id });
+      const itemsLeft = await Todo.countDocuments({
+        userId: req.user.id,
+        completed: false,
+      });
+      res.render("todos.ejs", {
+        todos: todoItems,
+        user: req.user,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  createTodo: async (req, res) => {
+    try {
+      await Todo.create({
+        todo: req.body.todo,
+        completed: false,
+        userId: req.user.id,
+      });
+      console.log("Todo has been added!");
+      res.redirect("/todos");
+    } catch (err) {
+      console.log(err);
     }
   },
   completeTodo: async (req, res) => {
     try {
-      await Model.updateOne(
+      await Todo.findOneAndUpdate(
+        { _id: req.body.todoId },
         {
-          todo: req.body.todo,
-        },
-        {
-          $set: {
-            completed: true,
-          },
+          completed: true,
         }
       );
-      res.json("marked completed");
-    } catch (error) {
-      console.log(error);
+      console.log("Marked Complete");
+      res.json("Marked Complete");
+    } catch (err) {
+      console.log(err);
     }
   },
   uncompleteTodo: async (req, res) => {
     try {
-      await Model.updateOne(
+      await Todo.findOneAndUpdate(
+        { _id: req.body.todoId },
         {
-          todo: req.body.todo,
-        },
-        {
-          $set: {
-            completed: false,
-          },
+          completed: false,
         }
       );
-      res.json("unmarked completed");
-    } catch (error) {
-      console.log(error);
+      console.log("Marked Incomplete");
+      res.json("Marked Incomplete");
+    } catch (err) {
+      console.log(err);
     }
   },
   deleteTodo: async (req, res) => {
     try {
-      await Model.deleteOne({ _id: req.body.id });
-      res.json("Todo deleted successfully");
-    } catch (error) {
-      console.log(error);
+      await Todo.findOneAndDelete({ _id: req.body.todoId });
+      console.log("Deleted Todo");
+      res.json("Deleted It");
+    } catch (err) {
+      console.log(err);
     }
   },
 };
